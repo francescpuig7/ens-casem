@@ -2839,12 +2839,12 @@ input, select, textarea {
 
 				#header .logo .symbol img {
 					display: block;
-					width: 7em;
-					height: 7em;
+					width: 5em;
+					height: 5em;
 				}
 
 			#header .logo .title {
-				font-size: 200%;
+				font-size: 130%;
 			}
 
 		#header nav {
