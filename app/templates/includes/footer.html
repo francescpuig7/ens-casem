@@ -22,6 +22,9 @@
             <ul class="copyright">
                 <li>Maria i Francesc 2023 &copy;</li>
                 <li>Coded by <a href="http://www.github.com/francescpuig7">Francesc Puig</a></li>
+                {% if current_user.is_authenticated %}
+					<li></li><strong>Ets dins!</strong>, <a href={{ url_for('logout') }}>Logout</a></li>
+				{% endif %}
             </ul>
         </div>
     </footer>

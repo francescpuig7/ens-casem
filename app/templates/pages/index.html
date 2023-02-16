@@ -12,11 +12,6 @@
 				Ens casem!
 			</h1>
 			<h2>27 de Maig de 2023</h2>
-			<p>
-				{% if current_user.is_authenticated %}
-					<strong>Ets dins!</strong>, <a href={{ url_for('logout') }}>Logout</a>
-				{% endif %}
-			</p>
         </header>
 
 		<section class="tiles">
@@ -26,7 +21,7 @@
 					     alt="Monestir de Sant Joan les Fonts" />
 				</span>
 				<a href={{ url_for('monestir') }}>
-					<h2>Celebraciò</h2>
+					<h2>Cerimònia</h2>
 					<div class="content">
 						<p>Monestir de Sant Joan les Fonts</p>
 					</div>
@@ -37,7 +32,7 @@
 					<img src="/static/images/pic02.jpg" alt="Restaurant la Moixina" />
 				</span>
 				<a href={{ url_for('restaurant') }}>
-					<h2>àpat</h2>
+					<h2>Àpat</h2>
 					<div class="content">
 						<p>Restaurant Font Moixina</p>
 					</div>

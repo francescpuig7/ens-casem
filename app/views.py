@@ -32,24 +32,24 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route('/monestir.html', methods=['GET'])
+@app.route('/cerimonia', methods=['GET'])
 def monestir():
     return render_template('pages/monestir.html')
 
 
-@app.route('/restaurant.html', methods=['GET'])
+@app.route('/apat', methods=['GET'])
 def restaurant():
     return render_template('pages/restaurant.html')
 
 
-@app.route('/comentaris.html', methods=['GET'])
+@app.route('/comentaris', methods=['GET'])
 def get_comentaris():
     comentaris = Comentari.query.all()
     return render_template('pages/comentaris.html', comentaris=comentaris)
 
 
 #todo: encara no funciona
-@app.route('/comentaris.html', methods=['GET', 'POST'])
+@app.route('/comentaris', methods=['GET', 'POST'])
 def download_comentaris():
     comentaris = Comentari.query.all()
     df = pd.DataFrame()
@@ -61,7 +61,7 @@ def download_comentaris():
     return send_from_directory(directory=uploads, filename=filename)
 
 
-@app.route('/form_comentaris.html', methods=['GET', 'POST'])
+@app.route('/form_comentaris', methods=['GET', 'POST'])
 def post_comentaris():
     form = AllergiesForm(request.form)
 
@@ -77,12 +77,12 @@ def post_comentaris():
         return render_template('pages/form_comentaris.html', form=form)
 
 
-@app.route('/notificacio_ok.html', methods=['GET', 'POST'])
+@app.route('/notificacio_ok', methods=['GET', 'POST'])
 def notificacio():
     return render_template('pages/notificacio_ok.html')
 
 
-@app.route('/elements_bckup.html', methods=['GET'])
+@app.route('/elements_bckup', methods=['GET'])
 def elements():
     import pandas as pd
     df = pd.read_csv("invitatsd.csv", delimiter=';')
@@ -107,14 +107,14 @@ def elements():
     return render_template('pages/elements_bckup.html')
 
 
-@app.route('/invitats.html', methods=['GET'])
+@app.route('/invitats', methods=['GET'])
 def get_invitats():
     invitats = Invitat.query.all()
     return render_template('pages/invitats.html', invitats=invitats)
 
 
 # Register a new user
-@app.route('/register.html', methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
 
     form = RegisterForm(request.form)
@@ -148,7 +148,7 @@ def register():
 
 
 # Authenticate user
-@app.route('/login.html', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     
     # Declare the login form
@@ -219,7 +219,7 @@ def decode(x):
 app.config['IMAGE_EXTS'] = [".png", ".jpg", ".jpeg", ".gif", ".tiff"]
 
 
-@app.route('/gallery.html')
+@app.route('/gallery')
 def gallery():
     root_dir = os.path.join(os.getcwd(), 'app', 'static', 'gallery')
     image_paths = []
