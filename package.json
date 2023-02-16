@@ -1,7 +1,7 @@
 {
-    "name": "flask-html5up-phantom",
+    "name": "ens-casem",
     "version": "0.0.1",
-    "description": "An open-source Flask boilerplate suitable for simple applications.",
+    "description": "Web App del nostre casament",
     "main": "gruntfile.js",
     "devDependencies": {
         "rimraf": "^2.5.2"
@@ -15,12 +15,12 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/app-generator/flask-html5up-phantom"
+	"url": "https://github.com/francescpuig7/ens-casem"
     },
     "bugs": {
-        "url": "https://github.com/app-generator/flask-html5up-phantom/issues",
-        "email": "support@appseed.us"
+        "url": "https://github.com/francescpuig7/ens-casem/issues",
+        "email": "info@francescpuig.cat"
     },
-    "author": "AppSeed.us <support@appseed.us> (https://appseed.us)",
+    "author": "Francesc Puig",
     "license": "CCA3.0"
 }
