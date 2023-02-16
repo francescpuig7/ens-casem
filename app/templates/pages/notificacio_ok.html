@@ -1,0 +1,19 @@
+{% extends "layouts/default.html" %}
+
+{% block title %} Comentari enviat {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <h1>Peticio enviada</h1>
+    <p>Moltes gràcies! La peticio ha estat enviada i enregistrada correctament.</p>
+    <p>en breus ens posarem en contacte per fer-te saber que l'hem llegit i si tenim dubtes t'ho farem saber!</p>
+    </hr>
+    <p><a class="button primary" href={{ url_for('index') }}>Torna a la pàgina principal</a> </p>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

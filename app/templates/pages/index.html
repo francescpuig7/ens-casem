@@ -1,0 +1,62 @@
+{% extends "layouts/default.html" %}
+
+{% block title %} Ens casem! {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+        <header>
+            <h1>
+				Ens casem!
+			</h1>
+			<h2>27 de Maig de 2023</h2>
+			<p>
+				{% if current_user.is_authenticated %}
+					<strong>Ets dins!</strong>, <a href={{ url_for('logout') }}>Logout</a>
+				{% endif %}
+			</p>
+        </header>
+
+		<section class="tiles">
+			<article class="style1">
+				<span class="image">
+					<img src="/static/images/pic01.jpg" 
+					     alt="Monestir de Sant Joan les Fonts" />
+				</span>
+				<a href={{ url_for('monestir') }}>
+					<h2>Celebraciò</h2>
+					<div class="content">
+						<p>Monestir de Sant Joan les Fonts</p>
+					</div>
+				</a>
+			</article>
+			<article class="style2">
+				<span class="image">
+					<img src="/static/images/pic02.jpg" alt="Restaurant la Moixina" />
+				</span>
+				<a href={{ url_for('restaurant') }}>
+					<h2>àpat</h2>
+					<div class="content">
+						<p>Restaurant Font Moixina</p>
+					</div>
+				</a>
+			</article>
+			<article class="style3">
+				<span class="image">
+					<img src="/static/images/pic03.jpg" alt="Galeria" />
+				</span>
+				<a href={{ url_for('post_comentaris') }}>
+					<h2>Comentaris</h2>
+					<div class="content">
+						<p>Notificacio alergies</p>
+					</div>
+				</a>
+			</article>
+		</section>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

@@ -1,0 +1,23 @@
+
+    <!-- Menu -->
+    <nav id="menu">
+        <h2>Menu</h2>
+        <ul>
+
+            <li><a href="/">Benvinguts</a></li>
+            <li><a href={{ url_for('monestir') }}>Ubicaciò Monestir</a></li>
+            <li><a href={{ url_for('restaurant') }}>Ubicaciò Restaurant</a></li>
+
+            <li><a href={{ url_for('post_comentaris') }}>Notificació al·lèrgies i comentaris</a></li>
+            <li><a href={{ url_for('gallery') }}>Galeria</a></li>
+            {% if current_user.is_authenticated %}
+                <li><a href={{ url_for('get_comentaris') }}>Veure al·lèrgies i comentaris</a></li>
+                <li><a href={{ url_for('get_invitats') }}>Llista invitats</a></li>
+                <li><a href={{ url_for('logout') }}>Desconnectar</a></li>
+            {% else %}
+                <li><a href={{ url_for('login') }}>Accedir</a></li>
+            {% endif %}
+
+        </ul>
+    </nav>
+

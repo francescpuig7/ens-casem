@@ -1,0 +1,30 @@
+{% extends "layouts/default.html" %}
+
+{% block title %} Galeria {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="static/assets/css/gallery.css">
+<script type="text/javascript" src="static/assets/js/gallery.js"></script>
+</head>
+<body>
+<h1>Gallery</h1>
+  <div class="overlay"><img src="blah" id="top" hidden=True>
+    <span id="close" hidden=True onclick=do_close()><b><u>TANCA (X)</u></b></span>
+  </div>
+  <div class="cx" style="background-color:#fff;">
+    {% for path in paths %}
+    <img src='cdn/{{ path }}' height=200 width=200 onclick="clicked_img(this)" >
+    {% endfor %}
+  </div>
+</body>
+</html>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

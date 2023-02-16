@@ -1,0 +1,51 @@
+{% extends "layouts/default.html" %}
+
+{% block title %} Invitats {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+							<h1>Llista invitats</h1>
+
+							<!-- Table -->
+								<section>
+									<h2>Invitats</h2>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Nom</th>
+													<th>Sexe</th>
+													<th>Especie</th>
+													<th>Notes</th>
+													<th>Confirmat</th>
+												</tr>
+											</thead>
+											<tbody>
+											{% for item in invitats %}
+											<tr>
+												<td>{{ item.nom }}</td>
+												<td>{{ item.sexe }}</td>
+												<td>{{ item.especie }}</td>
+												<td>{{ item.notes }}</td>
+												<td>{{ item.confirmat }}</td>
+											</tr>
+											{% endfor %}
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>Total</td>
+													<td>{{invitats|length}}</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+								</section>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

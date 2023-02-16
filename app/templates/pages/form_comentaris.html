@@ -1,0 +1,53 @@
+{% extends "layouts/default.html" %}
+
+{% block title %} Comentaris {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <h1>Comentaris</h1>
+    <p>Teniu algun dubtes? Voleu comunicar-nos alguna alergia o alguna peticiò? Si voleu preguntar-nos qualsevol cosa o fer-nos un comentari, escriviu aqui. Llegirem els vostres missatges i us respondrem directament per Whatsapp!</p>
+
+    <!-- Form -->
+    <section>
+
+        {% if msg %}
+            <p>{{ msg | safe }}</p>
+        {% endif %}
+
+        <form method="post" action="">
+
+            {{ form.hidden_tag() }}
+
+            <div class="row gtr-uniform">
+                <div class="col-6 col-12-xsmall">
+                    {{ form.nom(placeholder="Nom/Noms") }}
+                </div>
+                <div class="col-6 col-12-xsmall"></div>
+                <div class="col-6 col-12-xsmall">
+                    {{ form.bus(placeholder="Vindràs amb autobus? Si es que si, quantes places?") }}
+                </div>
+                <div class="col-6 col-12-xsmall">
+                    {{ form.trona(placeholder="Necessites trona? Quantes?") }}
+                </div>
+                <div class="col-12 col-12-xsmall">
+                    {{ form.comentaris(placeholder="Comentaris sobre allergies") }}
+                </div>
+
+                <div class="col-12">
+                    <ul class="actions">
+                        <li>
+                            <input type='submit' name='submit' value='Enviar' class="primary"/>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </section>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
