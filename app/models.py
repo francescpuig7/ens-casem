@@ -34,8 +34,8 @@ class Comentari(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     nom = db.Column(db.String(64), unique=True)
-    bus = db.Column(db.String(128), unique=True)
-    trona = db.Column(db.String(128), unique=True)
+    bus = db.Column(db.String(128))
+    trona = db.Column(db.String(128))
     comentari = db.Column(db.String(2000))
 
     def __init__(self, nom, bus, trona, comentari):
