@@ -66,11 +66,13 @@ def post_comentaris():
     form = AllergiesForm(request.form)
 
     if request.method == 'POST':
+        print(request.form)
         nom = request.form.get('nom', '', type=str)
         bus = request.form.get('bus', '', type=str)
         trona = request.form.get('trona', '', type=str)
         comentari = request.form.get('comentaris', '', type=str)
-        com = Comentari(nom, bus, trona, comentari)
+        confirmat = request.form.get('confirmat', '', type=str)
+        com = Comentari(nom, bus, trona, comentari, confirmat)
         com.save()
         return render_template('pages/notificacio_ok.html', form=form)
     if request.method == 'GET':

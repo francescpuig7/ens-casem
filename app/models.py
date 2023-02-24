@@ -37,12 +37,15 @@ class Comentari(db.Model):
     bus = db.Column(db.String(128))
     trona = db.Column(db.String(128))
     comentari = db.Column(db.String(2000))
+    confirmat = db.Column(db.String(2))
 
-    def __init__(self, nom, bus, trona, comentari):
+    def __init__(self, nom, bus, trona, comentari, confirmat):
+
         self.nom = nom
         self.bus = bus
         self.trona = trona
         self.comentari = comentari
+        self.confirmat = confirmat
 
     def __repr__(self):
         return str(self.nom) + ' - Comentari --> ' + str(self.comentari)

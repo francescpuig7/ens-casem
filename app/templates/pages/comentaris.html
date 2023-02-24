@@ -16,8 +16,8 @@
 											<thead>
 												<tr>
 													<th>Nom</th>
+													<th>Confirmat</th>
 													<th>Comentaris</th>
-													<th>Bus</th>
 													<th>Trona</th>
 												</tr>
 											</thead>
@@ -25,8 +25,8 @@
 											{% for item in comentaris %}
 											<tr>
 												<td>{{ item.nom }}</td>
+												<td>{{ item.confirmat }}</td>
 												<td>{{ item.comentari }}</td>
-												<td>{{ item.bus }}</td>
 												<td>{{ item.trona }}</td>
 											</tr>
 											{% endfor %}

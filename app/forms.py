@@ -6,7 +6,7 @@ Copyright (c) 2019 - present AppSeed.us
 
 from flask_wtf          import FlaskForm
 from flask_wtf.file     import FileField, FileRequired
-from wtforms import StringField, TextAreaField, SubmitField, PasswordField, IntegerField, BooleanField
+from wtforms import StringField, TextAreaField, SubmitField, PasswordField, IntegerField, BooleanField, RadioField
 from wtforms.validators import InputRequired, Email, DataRequired
 
 
@@ -24,6 +24,8 @@ class RegisterForm(FlaskForm):
 
 class AllergiesForm(FlaskForm):
 	nom = StringField(u'Nom', validators=[DataRequired()])
+	confirmat_si = RadioField(u'Confirmat Si')
+	confirmat_no = RadioField(u'Confirmat No')
 	bus = StringField('Bus')
 	trona = StringField('Trona')
 	comentaris = TextAreaField(u'Comentaris')
