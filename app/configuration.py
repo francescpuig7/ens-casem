@@ -18,3 +18,5 @@ class Config():
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 	SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')
+	if os.getenv('ENV', default='TEST') == 'PROD':
+		SQLALCHEMY_DATABASE_URI = 'postgres://${db.USERNAME}:${db.PASSWORD} @${db.HOSTNAME}:${db.PORT} /${db.DATABASE}'

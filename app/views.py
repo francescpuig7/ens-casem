@@ -250,5 +250,4 @@ def download_file(filepath):
 
 
 def get_language():
-    print(request.environ)
-    return request.environ.get('REQUEST_URI', '/ca/').split('/')[1]
+    return request.environ.get('RAW_URI', '/ca/').split('/')[1]
