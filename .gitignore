@@ -130,3 +130,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Custom files
+Elenco_*.csv
+elenco_*.csv
+Llista_*.csv
+llista_*.csv
+invitats_*.csv
+Invitats_*.csv
+Invitati_*.csv
+invitati_*.csv
