@@ -54,7 +54,6 @@ def get_comentaris():
     return render_template(f'pages/{lang}/comentaris.html', comentaris=comentaris)
 
 
-#todo: encara no funciona
 @app.route('/comentaris')
 def download_comentaris():
     try:
@@ -210,8 +209,6 @@ def index(path):
 
     content = None
 
-    #try:
-
     # try to match the pages defined in -> pages/<input file>
     lang = get_language()
     try:
@@ -222,6 +219,7 @@ def index(path):
     except Exception as err:
         print(err)
         return render_template('pages/error-404.html')
+
 
 # Return sitemap 
 @app.route('/sitemap.xml')
