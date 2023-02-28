@@ -1,0 +1,61 @@
+{% extends "layouts/default.html" %}
+
+{% block title %} Comentaris {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <h1>Informazioni</h1>
+
+    <!-- Form -->
+    <section>
+
+        {% if msg %}
+            <p>{{ msg | safe }}</p>
+        {% endif %}
+
+        <form method="post" action="">
+
+            {{ form.hidden_tag() }}
+
+            <div class="row gtr-uniform">
+                <div class="col-6 col-12-xsmall">
+                    {{ form.nom(placeholder="Nome/Nomi") }}
+                </div>
+                <div class="col-6 col-12-xsmall"></div>
+                <p>Confermi la tua presenza?</p>
+                <div class="col-6 col-6-small">
+                  <input type="radio" id="si" name="confirmat" value="si" checked>
+                  <label for="si">Si</label>
+                    <input type="radio" id="no" name="confirmat" value="no">
+                  <label for="no">No</label>
+                </div>
+                <div class="col-6 col-12-xsmall">
+                    {{ form.allergies(placeholder="Hai qualche allergia/intolleranza?") }}
+                </div>
+                <div class="col-6 col-12-xsmall"></div>
+                <div class="col-6 col-12-xsmall">
+                    {{ form.trona(placeholder="Hai un bambino che ha bisogna di seggiolini? Se si, quanti?") }}
+                </div>
+                <div class="col-6 col-12-xsmall"></div>
+                <div class="col-12 col-12-xsmall">
+                    {{ form.comentaris(placeholder="Hai qualche comunicazione da farci?") }}
+                </div>
+
+                <div class="col-12">
+                    <ul class="actions">
+                        <li>
+                            <input type='submit' name='submit' value='Inoltra' class="primary"/>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </section>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

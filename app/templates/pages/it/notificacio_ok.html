@@ -1,0 +1,19 @@
+{% extends "layouts/default.html" %}
+
+{% block title %} Comentari enviat {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <h1>Salvato</h1>
+    <p>Grazie! La tua richiesta è stata salvata.</p>
+    <p>ti contatteremo a breve per farti sapere che l'abbiamo letto e se avremo dei dubbi ti faremo sapere!</p>
+    </hr>
+    <p><a class="button primary" href={{ url_for('index') }}>Home</a> </p>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

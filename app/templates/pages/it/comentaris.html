@@ -1,0 +1,54 @@
+{% extends "layouts/default.html" %}
+
+{% block title %} Comentaris {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+							<h1>Comentaris dels invitats</h1>
+
+							<!-- Table -->
+								<section>
+									<h2>Rebuts</h2>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Nome</th>
+													<th>Confermato</th>
+													<th>Allergie/Intoleranze</th>
+													<th>Seggiolini</th>
+													<th>Comenti</th>
+												</tr>
+											</thead>
+											<tbody>
+											{% for item in comentaris %}
+											<tr>
+												<td>{{ item.nom }}</td>
+												<td>{{ item.confirmat }}</td>
+												<td>{{ item.allergies }}</td>
+												<td>{{ item.trona }}</td>
+												<td>{{ item.comentaris }}</td>
+											</tr>
+											{% endfor %}
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>Total</td>
+													<td>{{comentaris|length}}</td>
+												</tr>
+											</tfoot>
+										</table>
+										<div>
+											<a class="button primary icon fa-download" href={{ url_for('download_comentaris') }}>Scarica Report</a>
+										</div>
+									</div>
+								</section>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
