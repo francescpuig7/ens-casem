@@ -32,20 +32,26 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route('/cerimonia', methods=['GET'])
+@app.route('/ca/cerimonia', methods=['GET'])
+@app.route('/it/cerimonia', methods=['GET'])
 def monestir():
-    return render_template('pages/monestir.html')
+    lang = get_language()
+    return render_template(f'pages/{lang}/monestir.html')
 
 
-@app.route('/apat', methods=['GET'])
+@app.route('/ca/apat', methods=['GET'])
+@app.route('/it/apat', methods=['GET'])
 def restaurant():
-    return render_template('pages/restaurant.html')
+    lang = get_language()
+    return render_template(f'pages/{lang}/restaurant.html')
 
 
-@app.route('/comentaris', methods=['GET'])
+@app.route('/ca/comentaris', methods=['GET'])
+@app.route('/it/comentaris', methods=['GET'])
 def get_comentaris():
     comentaris = Comentari.query.all()
-    return render_template('pages/comentaris.html', comentaris=comentaris)
+    lang = get_language()
+    return render_template(f'pages/{lang}/comentaris.html', comentaris=comentaris)
 
 
 #todo: encara no funciona
@@ -61,27 +67,32 @@ def download_comentaris():
     return send_from_directory(directory=uploads, filename=filename)
 
 
-@app.route('/form_comentaris', methods=['GET', 'POST'])
+@app.route('/ca/form_comentaris', methods=['GET', 'POST'])
+@app.route('/it/form_comentaris', methods=['GET', 'POST'])
 def post_comentaris():
     form = AllergiesForm(request.form)
 
+    lang = get_language()
     if request.method == 'POST':
         print(request.form)
         nom = request.form.get('nom', '', type=str)
         bus = request.form.get('bus', '', type=str)
+        allergies = request.form.get('allergies', '', type=str)
         trona = request.form.get('trona', '', type=str)
         comentari = request.form.get('comentaris', '', type=str)
         confirmat = request.form.get('confirmat', '', type=str)
-        com = Comentari(nom, bus, trona, comentari, confirmat)
+        com = Comentari(nom, bus, trona, comentari, confirmat, allergies)
         com.save()
-        return render_template('pages/notificacio_ok.html', form=form)
+        return render_template(f'pages/{lang}/notificacio_ok.html', form=form)
     if request.method == 'GET':
-        return render_template('pages/form_comentaris.html', form=form)
+        return render_template(f'pages/{lang}/form_comentaris.html', form=form)
 
 
-@app.route('/notificacio_ok', methods=['GET', 'POST'])
+@app.route('/ca/notificacio_ok', methods=['GET', 'POST'])
+@app.route('/it/notificacio_ok', methods=['GET', 'POST'])
 def notificacio():
-    return render_template('pages/notificacio_ok.html')
+    lang = get_language()
+    return render_template(f'pages/{lang}/notificacio_ok.html')
 
 
 @app.route('/elements_bckup', methods=['GET'])
@@ -236,3 +247,7 @@ def gallery():
 def download_file(filepath):
     dir, filename = os.path.split(decode(filepath))
     return send_from_directory(dir, filename, as_attachment=False)
+
+
+def get_language():
+    return request.environ.get('REQUEST_URI', 'ca').split('/')[1]

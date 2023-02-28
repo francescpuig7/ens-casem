@@ -38,17 +38,19 @@ class Comentari(db.Model):
     trona = db.Column(db.String(128))
     comentari = db.Column(db.String(2000))
     confirmat = db.Column(db.String(2))
+    allergies = db.Column(db.String(256))
 
-    def __init__(self, nom, bus, trona, comentari, confirmat):
+    def __init__(self, nom, bus, trona, comentari, confirmat, allergies):
 
         self.nom = nom
         self.bus = bus
         self.trona = trona
         self.comentari = comentari
         self.confirmat = confirmat
+        self.allergies = allergies
 
     def __repr__(self):
-        return str(self.nom) + ' - Comentari --> ' + str(self.comentari)
+        return f'{self.nom} --> Confirmat? {self.confirmat}, Al·lèrgies: {self.allergies}, Notes --> {self.comentari}'
 
     def save(self):
         db.session.add(self)

@@ -8,7 +8,6 @@
 {% block content %}
 
     <h1>Comentaris</h1>
-    <p>Teniu algun dubtes? Voleu comunicar-nos alguna alergia o alguna peticiò? Si voleu preguntar-nos qualsevol cosa o fer-nos un comentari, escriviu aqui. Llegirem els vostres missatges i us respondrem directament per Whatsapp!</p>
 
     <!-- Form -->
     <section>
@@ -33,15 +32,16 @@
                     <input type="radio" id="no" name="confirmat" value="no">
                   <label for="no">No</label>
                 </div>
-                <!--
                 <div class="col-6 col-12-xsmall">
-                    {{ form.bus(placeholder="Vindràs amb autobus? Si es que si, quantes places?") }}
-                </div>-->
-                <div class="col-6 col-12-xsmall">
-                    {{ form.trona(placeholder="Necessites trona? Quantes?") }}
+                    {{ form.allergies(placeholder="Tens alguna al·lèrgia/intolerància?") }}
                 </div>
+                <div class="col-6 col-12-xsmall"></div>
+                <div class="col-6 col-12-xsmall">
+                    {{ form.trona(placeholder="Vens amb mainada que necessiti trona? Quantes?") }}
+                </div>
+                <div class="col-6 col-12-xsmall"></div>
                 <div class="col-12 col-12-xsmall">
-                    {{ form.comentaris(placeholder="Comentaris sobre allergies") }}
+                    {{ form.comentaris(placeholder="Tens alguna pregunta o comentari que ens vulguis fer?") }}
                 </div>
 
                 <div class="col-12">
