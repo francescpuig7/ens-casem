@@ -55,16 +55,24 @@ def get_comentaris():
 
 
 #todo: encara no funciona
-@app.route('/comentaris', methods=['GET', 'POST'])
+@app.route('/comentaris')
 def download_comentaris():
-    comentaris = Comentari.query.all()
-    df = pd.DataFrame()
-    for comentari in comentaris:
-        df.append({'Nom': comentari.nom, 'Comentari': comentari.comentari, 'Trones': comentari.numero_trona})
-    filename = '{0}_{1}_.csv'.format("Llistat_comentaris", str(os.getuid()))
-    df.to_csv('./uploads' + filename, sep=';')
-    uploads = './uploads'
-    return send_from_directory(directory=uploads, filename=filename)
+    try:
+        comentaris = Comentari.query.all()
+        df = pd.DataFrame()
+        for comentari in comentaris:
+            df = df.append([{
+                'Nome/Nomi': comentari.nom,
+                'Conferma': comentari.confirmat,
+                'Allergie/Intoleranze': comentari.allergies,
+                'Comentari': comentari.comentari,
+                'Seggiolino': comentari.trona
+            }])
+        filename = 'Elenco_informazioni.csv'
+        df.to_csv(os.path.join(app.root_path, 'static', filename), sep=';', index=False)
+        return send_from_directory(os.path.join(app.root_path, 'static'), filename)
+    except Exception as err:
+        return render_template('pages/error-500.html', msg=err)
 
 
 @app.route('/ca/form_comentaris', methods=['GET', 'POST'])
