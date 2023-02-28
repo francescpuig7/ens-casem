@@ -122,15 +122,20 @@ def elements():
             confirmat = True
 
         c = Invitat(nom=elem['Nomi'], sexe=sexe, especie=especie, confirmat=confirmat)
-        print(c)
         c.save()
     return render_template('pages/elements_bckup.html')
 
 
-@app.route('/invitats', methods=['GET'])
-def get_invitats():
-    invitats = Invitat.query.all()
-    return render_template('pages/invitats.html', invitats=invitats)
+@app.route('/coses', methods=['GET'])
+def get_coses():
+    return render_template('pages/coses.html')
+
+
+@app.route('/ca/cancons', methods=['GET'])
+@app.route('/it/cancons', methods=['GET'])
+def get_cancons():
+    lang = get_language()
+    return render_template(f'pages/{lang}/cancons.html')
 
 
 # Register a new user
