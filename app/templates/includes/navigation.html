@@ -8,8 +8,8 @@
             <li><a href={{ url_for('monestir') }}>Cerimònia</a></li>
             <li><a href={{ url_for('restaurant') }}>Àpat</a></li>
             <li><a href={{ url_for('post_comentaris') }}>Notificació al·lèrgies i comentaris</a></li>
-            <li><a href={{ url_for('get_comentaris') }}>Llista al·lèrgies i comentaris</a></li>
             {% if current_user.is_authenticated %}
+                <li><a href={{ url_for('get_comentaris') }}>Llista al·lèrgies i comentaris</a></li>
                 <li><a href={{ url_for('get_invitats') }}>Llista invitats</a></li>
                 <li><a href={{ url_for('gallery') }}>Galeria</a></li>
                 <li><a href={{ url_for('logout') }}>Desconnectar</a></li>
