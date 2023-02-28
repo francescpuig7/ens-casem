@@ -1,0 +1,21 @@
+{% extends "layouts/default.html" %}
+
+{% block title %} Wrong things {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <h1>Error 500</h1>
+    <p>
+        Fala galera! Mi dispiace, qualcosa è andata storta. Ritorna a <a href="/">Casa</a>
+    </p>
+    {% if msg %}
+        <p>{{ msg | safe }}</p>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
