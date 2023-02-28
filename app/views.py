@@ -200,6 +200,8 @@ def login():
 # App main route + generic routing
 @app.route('/', defaults={'path': 'index.html'})
 @app.route('/<path>')
+@app.route('/it/<path>')
+@app.route('/it', defaults={'path': 'index.html'})
 def index(path):
 
     if not current_user.is_authenticated:
@@ -211,11 +213,15 @@ def index(path):
     #try:
 
     # try to match the pages defined in -> pages/<input file>
-    return render_template('pages/'+path )
-    
-    #except:
-    #    
-    #    return render_template( 'pages/error-404.html' )
+    lang = get_language()
+    try:
+        if lang == 'ca':
+            return render_template(f'pages/{lang}/'+'index.html')
+        else:
+            return render_template(f'pages/{lang}/'+path)
+    except Exception as err:
+        print(err)
+        return render_template('pages/error-404.html')
 
 # Return sitemap 
 @app.route('/sitemap.xml')
