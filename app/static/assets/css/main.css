@@ -3142,6 +3142,11 @@ input, select, textarea {
 
 		}
 
+/* Imgs */
+img.virolai {
+    width: 100%;
+}
+
 /* Footer */
 
 	#footer {
