@@ -16,7 +16,7 @@ class Config():
 	SECRET_KEY = "77tgFCdrEEdv77554##@3"
 	
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
-
-	SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')
 	if os.getenv('ENV', default='TEST') == 'PROD':
-		SQLALCHEMY_DATABASE_URI_ = 'postgres://${db.USERNAME}:${db.PASSWORD} @${db.HOSTNAME}:${db.PORT} /${db.DATABASE}'
+		SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
+	else:
+		SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')
