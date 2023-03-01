@@ -7,3 +7,4 @@ flask_bcrypt
 gunicorn
 email_validator
 pandas
+psycopg2
