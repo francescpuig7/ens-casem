@@ -12,6 +12,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config():
 
+	LANGUAGES = ['ca', 'it']
 	CSRF_ENABLED = True
 	SECRET_KEY = "77tgFCdrEEdv77554##@3"
 	
