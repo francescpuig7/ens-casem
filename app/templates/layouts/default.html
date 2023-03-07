@@ -12,6 +12,15 @@
         <title>
             Francesc&Maria {% block title %}{% endblock %}
         </title>
+        <div>
+            {% for language in AVAILABLE_LANGUAGES.items() %}
+                {% if CURRENT_LANGUAGE == language[0] %}
+                    {{ language[1] }}
+                {% else %}
+                    <a href="{{ url_for('set_language', language=language[0]) }}" >{{ language[1] }}</a>
+                {%  endif %}
+            {% endfor %}
+        </div>
 
         <link rel="shortcut icon" type="image/png" href="/static/favicon.ico"/>
         <meta name="description" content="La pàgina web de la Maria i en Francesc">
