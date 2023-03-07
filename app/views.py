@@ -14,10 +14,15 @@ from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.exceptions import HTTPException, NotFound, abort
 
 # App modules
-from app import app, lm, db, bc
+from app import app, lm, db, bc, session
 from app.models import User, Comentari, Invitat
 from app.forms import LoginForm, RegisterForm, AllergiesForm
 
+
+@app.route('/language=<language>')
+def set_language(language=None):
+    session['language'] = language
+    return redirect(url_for('index'))
 
 # provide login manager with load_user callback
 @lm.user_loader
@@ -32,25 +37,22 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route('/ca/cerimonia', methods=['GET'])
-@app.route('/it/cerimonia', methods=['GET'])
-def monestir():
-    lang = get_language()
+@app.route('/<lang_code>/cerimonia', methods=['GET'])
+def monestir(lang_code):
+    lang = lang_code
     return render_template(f'pages/{lang}/monestir.html')
 
 
-@app.route('/ca/apat', methods=['GET'])
-@app.route('/it/apat', methods=['GET'])
-def restaurant():
-    lang = get_language()
+@app.route('/<lang_code>/apat', methods=['GET'])
+def restaurant(lang_code):
+    lang = lang_code
     return render_template(f'pages/{lang}/restaurant.html')
 
 
-@app.route('/ca/comentaris', methods=['GET'])
-@app.route('/it/comentaris', methods=['GET'])
-def get_comentaris():
+@app.route('/<lang_code>/comentaris', methods=['GET'])
+def get_comentaris(lang_code):
     comentaris = Comentari.query.all()
-    lang = get_language()
+    lang = lang_code
     return render_template(f'pages/{lang}/comentaris.html', comentaris=comentaris)
 
 
@@ -74,14 +76,12 @@ def download_comentaris():
         return render_template('pages/error-500.html', msg=err)
 
 
-@app.route('/ca/form_comentaris', methods=['GET', 'POST'])
-@app.route('/it/form_comentaris', methods=['GET', 'POST'])
-def post_comentaris():
+@app.route('/<lang_code>/form_comentaris', methods=['GET', 'POST'])
+def post_comentaris(lang_code):
     form = AllergiesForm(request.form)
 
-    lang = get_language()
+    lang = lang_code
     if request.method == 'POST':
-        print(request.form)
         nom = request.form.get('nom', '', type=str)
         bus = request.form.get('bus', '', type=str)
         allergies = request.form.get('allergies', '', type=str)
@@ -95,10 +95,9 @@ def post_comentaris():
         return render_template(f'pages/{lang}/form_comentaris.html', form=form)
 
 
-@app.route('/ca/notificacio_ok', methods=['GET', 'POST'])
-@app.route('/it/notificacio_ok', methods=['GET', 'POST'])
-def notificacio():
-    lang = get_language()
+@app.route('/<lang_code>/notificacio_ok', methods=['GET', 'POST'])
+def notificacio(lang_code):
+    lang = lang_code
     return render_template(f'pages/{lang}/notificacio_ok.html')
 
 
@@ -131,10 +130,9 @@ def get_coses():
     return render_template('pages/coses.html')
 
 
-@app.route('/ca/cancons', methods=['GET'])
-@app.route('/it/cancons', methods=['GET'])
-def get_cancons():
-    lang = get_language()
+@app.route('/<lang_code>/cancons', methods=['GET'])
+def get_cancons(lang_code):
+    lang = lang_code
     return render_template(f'pages/{lang}/cancons.html')
 
 
@@ -204,23 +202,14 @@ def login():
 # App main route + generic routing
 @app.route('/', defaults={'path': 'index.html'})
 @app.route('/<path>')
-@app.route('/it/<path>')
-@app.route('/it', defaults={'path': 'index.html'})
 def index(path):
-
-    if not current_user.is_authenticated:
-        pass
-        #return redirect(url_for('login'))
-
-    content = None
 
     # try to match the pages defined in -> pages/<input file>
     lang = get_language()
+    if path in ('ca', 'it') or path != 'index.html':
+        path = 'index.html'
     try:
-        if lang == 'ca':
-            return render_template(f'pages/{lang}/'+'index.html')
-        else:
-            return render_template(f'pages/{lang}/'+path)
+        return render_template(f'pages/{lang}/'+path)
     except Exception as err:
         print(err)
         return render_template('pages/error-404.html')
@@ -249,8 +238,8 @@ def decode(x):
 app.config['IMAGE_EXTS'] = [".png", ".jpg", ".jpeg", ".gif", ".tiff"]
 
 
-@app.route('/gallery')
-def gallery():
+@app.route('/<lang_code>/gallery')
+def gallery(lang_code):
     root_dir = os.path.join(os.getcwd(), 'app', 'static', 'gallery')
     image_paths = []
     for root, dirs, files in os.walk(root_dir):
@@ -267,4 +256,4 @@ def download_file(filepath):
 
 
 def get_language():
-    return request.environ.get('RAW_URI', '/ca/').split('/')[1]
+    return session.get('language', 'ca')

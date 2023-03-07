@@ -3,19 +3,34 @@
     <nav id="menu">
         <h2>Menu</h2>
         <ul>
-
-            <li><a href="/">Home</a></li>
-            <li><a href={{ url_for('monestir') }}>Cerimonia</a></li>
-            <li><a href={{ url_for('restaurant') }}>Ricevimento</a></li>
-            <li><a href={{ url_for('post_comentaris') }}>Informazioni</a></li>
-            <li><a href={{ url_for('get_cancons') }}>Canzoni</a></li>
-            {% if current_user.is_authenticated %}
-                <li><a href={{ url_for('get_comentaris') }}>Elenco informazioni</a></li>
-                <li><a href={{ url_for('get_coses') }}>Le nostre cose</a></li>
-                <li><a href={{ url_for('gallery') }}>Gallery</a></li>
-                <li><a href={{ url_for('logout') }}>Log Out</a></li>
+            {% if session['language'] == 'ca'%}
+                <li><a href="/">Home</a></li>
+                <li><a href={{ url_for('monestir', lang_code='ca') }}>Cerimonia</a></li>
+                <li><a href={{ url_for('restaurant', lang_code='ca') }}>Rebuda</a></li>
+                <li><a href={{ url_for('post_comentaris', lang_code='ca') }}>Informacio</a></li>
+                <li><a href={{ url_for('get_cancons', lang_code='ca') }}>Cancons</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href={{ url_for('get_comentaris', lang_code='ca') }}>Informacions</a></li>
+                    <li><a href={{ url_for('get_coses') }}>Les nostres coses</a></li>
+                    <li><a href={{ url_for('gallery', lang_code='ca') }}>Galeria</a></li>
+                    <li><a href={{ url_for('logout') }}>Log Out</a></li>
+                {% else %}
+                    <li><a href={{ url_for('login') }}>Area reservada</a></li>
+                {% endif %}
             {% else %}
-                <li><a href={{ url_for('login') }}>Area riservata</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href={{ url_for('monestir', lang_code='it') }}>Cerimonia</a></li>
+                <li><a href={{ url_for('restaurant', lang_code='it') }}>Ricevimento</a></li>
+                <li><a href={{ url_for('post_comentaris', lang_code='it') }}>Informazioni</a></li>
+                <li><a href={{ url_for('get_cancons', lang_code='it') }}>Canzoni</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href={{ url_for('get_comentaris', lang_code='it') }}>Elenco informazioni</a></li>
+                    <li><a href={{ url_for('get_coses') }}>Le nostre cose</a></li>
+                    <li><a href={{ url_for('gallery', lang_code='it') }}>Gallery</a></li>
+                    <li><a href={{ url_for('logout') }}>Log Out</a></li>
+                {% else %}
+                    <li><a href={{ url_for('login') }}>Area riservata</a></li>
+                {% endif %}
             {% endif %}
 
         </ul>

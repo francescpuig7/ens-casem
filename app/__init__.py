@@ -6,7 +6,7 @@ Copyright (c) 2019 - present AppSeed.us
 
 import os
 
-from flask import Flask
+from flask import Flask, session, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
@@ -15,8 +15,20 @@ from flask_bcrypt import Bcrypt
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
-
+app.secret_key = 'random str sk'
 app.config.from_object('app.configuration.Config')
+app.config['LANGUAGES'] = {
+    'ca': 'CAT',
+    'it': 'IT',
+}
+
+
+@app.context_processor
+def inject_conf_var():
+    app.config['LANGUAGES'].keys()
+    to_ret = dict(AVAILABLE_LANGUAGES=app.config['LANGUAGES'], CURRENT_LANGUAGE=session.get('language', request.accept_languages.best_match(app.config['LANGUAGES'].keys())))
+    return to_ret
+
 
 db = SQLAlchemy(app)  # flask-sqlalchemy
 bc = Bcrypt(app)  # flask-bcrypt
