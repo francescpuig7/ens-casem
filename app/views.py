@@ -18,7 +18,7 @@ from app import app, lm, db, bc, session
 from app.models import User, Comentari, Invitat
 from app.forms import LoginForm, RegisterForm, AllergiesForm, CreateInvitatForm
 
-MAP_ESPECIE = {'1': 'Pepe', '2': 'Sale Rosa'}
+MAP_ESPECIE = {'1': 'Pepe', '2': 'Sale'}
 MAP_CONFIRMAT = {'on': True, 'off': False}
 
 
