@@ -68,7 +68,7 @@ class Invitat(db.Model):
     especie = db.Column(db.String(5))
     notes = db.Column(db.String(250))
 
-    def __init__(self, nom, sexe, confirmat=False, especie=None, notes=None):
+    def __init__(self, nom, sexe, confirmat=False, especie=None, notes=""):
         self.nom = nom
         self.sexe = sexe
         self.confirmat = 'NO'
@@ -78,7 +78,10 @@ class Invitat(db.Model):
         self.notes = notes
 
     def __repr__(self):
-        return str(self.nom) + ' - Confirmat --> ' + str(self.confirmat)
+        return str(
+            f"""{self.nom} - Confirmat: {self.confirmat}, Especie: {self.especie}, Sexe: {self.sexe}, 
+            Comentaris: {self.notes}"""
+        )
 
     def save(self):
         db.session.add(self)

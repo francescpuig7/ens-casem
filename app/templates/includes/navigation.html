@@ -24,6 +24,7 @@
                 <li><a href={{ url_for('post_comentaris', lang_code='it') }}>Informazioni</a></li>
                 <li><a href={{ url_for('get_cancons', lang_code='it') }}>Canzoni</a></li>
                 {% if current_user.is_authenticated %}
+                    <li><a href={{ url_for('invitats') }}>Invitati</a></li>
                     <li><a href={{ url_for('get_comentaris', lang_code='it') }}>Elenco informazioni</a></li>
                     <li><a href={{ url_for('get_coses') }}>Le nostre cose</a></li>
                     <li><a href={{ url_for('gallery', lang_code='it') }}>Gallery</a></li>

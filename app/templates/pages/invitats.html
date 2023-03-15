@@ -15,11 +15,11 @@
 										<table>
 											<thead>
 												<tr>
-													<th>Nom</th>
-													<th>Sexe</th>
-													<th>Especie</th>
-													<th>Notes</th>
-													<th>Confirmat</th>
+													<th>Nome</th>
+													<th>Genero</th>
+													<th>Spezia</th>
+													<th>Conferma</th>
+													<th>Allergie/intoleranze</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -28,9 +28,15 @@
 												<td>{{ item.nom }}</td>
 												<td>{{ item.sexe }}</td>
 												<td>{{ item.especie }}</td>
-												<td>{{ item.notes }}</td>
 												<td>{{ item.confirmat }}</td>
+												<td>{{ item.notes }}</td>
 											</tr>
+											<!--<p>{{item.nom}}</p>
+											<form method="POST" action="./update">
+											<input type="hidden" value="{{item.nom}}" name="beforename">
+											<input type="text" value="{{item.nom}}" name="updatedname">
+											<input type="submit" value="Update">
+											</form> -->
 											{% endfor %}
 											</tbody>
 											<tfoot>
@@ -42,6 +48,43 @@
 											</tfoot>
 										</table>
 									</div>
+								</section>
+								<br>
+								<section>
+									<h2>Aggiungere Invitato</h2>
+									<form method="POST" action="/invitats">
+										{{ form.hidden_tag() }}
+										<div class="row gtr-uniform">
+											<div class="col-6 col-12-xsmall">
+												{{ form.nom(placeholder="Nome") }}
+											</div>
+											<div class="col-6 col-12-xsmall">
+												<select name="sexe" id="sexe">
+													<option value="">- Genero -</option>
+													<option value="M">Maschio</option>
+													<option value="F">Femmina</option>
+													<option value="B">Bambino</option>
+												</select>
+											</div>
+											<div class="col-6 col-12-xsmall">
+												<select name="especie" id="especie">
+													<option value="">- Spezia -</option>
+													<option value="1">Pepe</option>
+													<option value="2">Sale Rosa</option>
+												</select>
+											</div>
+											<div class="col-6 col-12-xsmall">
+												<input type="text" name="comentaris" id="comentaris" value="" placeholder="Allergie/Intoleranze"/>
+											</div>
+											<div class="col-6 col-12-small">
+												<input type="checkbox" id="confirmat" name="confirmat" checked>
+												<label for="confirmat">Confermato?</label>
+											</div>
+											<div class="col-12">
+												<input type="submit" value="Aggiunge">
+											</div>
+										</div>
+									</form>
 								</section>
 
 

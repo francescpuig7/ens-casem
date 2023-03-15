@@ -16,7 +16,10 @@ from werkzeug.exceptions import HTTPException, NotFound, abort
 # App modules
 from app import app, lm, db, bc, session
 from app.models import User, Comentari, Invitat
-from app.forms import LoginForm, RegisterForm, AllergiesForm
+from app.forms import LoginForm, RegisterForm, AllergiesForm, CreateInvitatForm
+
+MAP_ESPECIE = {'1': 'Pepe', '2': 'Sale Rosa'}
+MAP_CONFIRMAT = {'on': True, 'off': False}
 
 
 @app.route('/language=<language>')
@@ -101,28 +104,28 @@ def notificacio(lang_code):
     return render_template(f'pages/{lang}/notificacio_ok.html')
 
 
-@app.route('/elements_bckup', methods=['GET'])
-def elements():
-    import pandas as pd
-    df = pd.read_csv("invitatsd.csv", delimiter=';')
-    df = df.fillna(0)
-    db.session.delete(Invitat)
-    print(df)
-    for elem in df.T.to_dict().values():
-        if elem['pepe'] == 1.0:
-            sexe = 'H'
-            especie = 'Pepe'
-        else:
-            sexe = 'D'
-            especie = 'Sale'
-        confirmat = False
-        print(elem)
-        if int(elem['Confirmados']) == 1:
-            confirmat = True
+@app.route('/invitats', methods=['GET', 'POST'])
+def invitats():
+    form = CreateInvitatForm(request.form)
 
-        c = Invitat(nom=elem['Nomi'], sexe=sexe, especie=especie, confirmat=confirmat)
-        c.save()
-    return render_template('pages/elements_bckup.html')
+    if request.method == 'GET':
+        invitats = Invitat.query.all()
+        return render_template(f'pages/invitats.html', invitats=invitats, form=form)
+    if request.method == 'POST':
+        try:
+            nom = request.form.get('nom', '', type=str)
+            sexe = request.form.get('sexe', 'M', type=str)
+            especie = request.form.get('especie', '1', type=str)
+            confirmat = request.form.get('confirmat', 'off')
+            comentaris = request.form.get('comentaris', '')
+            c = Invitat(nom=nom, sexe=sexe, especie=MAP_ESPECIE[especie], confirmat=MAP_CONFIRMAT[confirmat],
+                        notes=comentaris)
+            c.save()
+            invitats = Invitat.query.all()
+            return render_template(f'pages/invitats.html', invitats=invitats, form=form)
+        except Exception as err:
+            print(err)
+            return render_template('pages/error-404.html')
 
 
 @app.route('/coses', methods=['GET'])

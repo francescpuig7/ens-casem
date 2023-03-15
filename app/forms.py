@@ -29,3 +29,7 @@ class AllergiesForm(FlaskForm):
 	allergies = StringField('Allergies')
 	trona = StringField('Trona')
 	comentaris = TextAreaField(u'Comentaris')
+
+
+class CreateInvitatForm(FlaskForm):
+	nom = StringField(u'Nom', validators=[DataRequired()])
