@@ -65,7 +65,7 @@ class Invitat(db.Model):
     nom = db.Column(db.String(50))
     sexe = db.Column(db.String(10))
     confirmat = db.Column(db.String(2))
-    especie = db.Column(db.String(5))
+    especie = db.Column(db.String(15))
     notes = db.Column(db.String(250))
 
     def __init__(self, nom, sexe, confirmat=False, especie=None, notes=""):
