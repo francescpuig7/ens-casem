@@ -2699,6 +2699,7 @@ input, select, textarea {
 
 			.tiles article.style5 > .image:before {
 				background-color: #d0d0d0;
+				opacity: 57%;
 			}
 
 			.tiles article.style6 > .image:before {
