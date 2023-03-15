@@ -10,6 +10,7 @@
                 <li><a href={{ url_for('post_comentaris', lang_code='ca') }}>Informacio</a></li>
                 <li><a href={{ url_for('get_cancons', lang_code='ca') }}>Cancons</a></li>
                 {% if current_user.is_authenticated %}
+                    <li><a href={{ url_for('invitats') }}>Invitati</a></li>
                     <li><a href={{ url_for('get_comentaris', lang_code='ca') }}>Informacions</a></li>
                     <li><a href={{ url_for('get_coses') }}>Les nostres coses</a></li>
                     <li><a href={{ url_for('gallery', lang_code='ca') }}>Galeria</a></li>
