@@ -110,7 +110,11 @@ def invitats():
 
     if request.method == 'GET':
         invitats = Invitat.query.all()
-        return render_template(f'pages/invitats.html', invitats=invitats, form=form)
+        try:
+            confirmats = len([x for x in invitats if x.confirmat_ok])
+        except Exception as err:
+            confirmats = 0
+        return render_template(f'pages/invitats.html', invitats=invitats, form=form, confirmats=confirmats)
     if request.method == 'POST':
         try:
             nom = request.form.get('nom', '', type=str)
@@ -122,7 +126,11 @@ def invitats():
                         notes=comentaris)
             c.save()
             invitats = Invitat.query.all()
-            return render_template(f'pages/invitats.html', invitats=invitats, form=form)
+            try:
+                confirmats = len([x for x in invitats if x.confirmat_ok])
+            except Exception as err:
+                confirmats = 0
+            return render_template(f'pages/invitats.html', invitats=invitats, form=form, confirmats=confirmats)
         except Exception as err:
             print(err)
             return render_template('pages/error-404.html')

@@ -6,7 +6,7 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-							<h1>Llista invitats</h1>
+							<h1>Elenco Invitati</h1>
 
 							<!-- Table -->
 								<section>
@@ -42,8 +42,10 @@
 											<tfoot>
 												<tr>
 													<td colspan="2"></td>
-													<td>Total</td>
+													<td>Totale Invitati</td>
 													<td>{{invitats|length}}</td>
+													<td>Totale Confermati</td>
+													<td>{{confirmats}}</td>
 												</tr>
 											</tfoot>
 										</table>

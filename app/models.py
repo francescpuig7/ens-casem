@@ -88,3 +88,10 @@ class Invitat(db.Model):
         db.session.commit()
 
         return self
+
+    @property
+    def confirmat_ok(self):
+        if self.confirmat == 'SI':
+            return True
+        else:
+            return False
