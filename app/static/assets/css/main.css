@@ -2819,7 +2819,7 @@ input, select, textarea {
 			border-bottom: 0;
 			color: inherit;
 			font-weight: 900;
-			letter-spacing: 0.35em;
+			letter-spacing: 0.15em;
 			margin: 0 0 2.5em 0;
 			text-decoration: none;
 			text-transform: uppercase;
@@ -2837,8 +2837,8 @@ input, select, textarea {
 
 				#header .logo .symbol img {
 					display: block;
-					width: 9em;
-					height: 9em;
+					width: 8em;
+					height: 8em;
 				}
 
 			#header .logo .title {
@@ -3151,6 +3151,12 @@ input, select, textarea {
 /* Custom */
 img.virolai {
     width: 100%;
+}
+
+img.banner {
+    width: 100%;
+    border-radius: 7px;
+    opacity: 0.9;
 }
 
 .mappa-responsive {
