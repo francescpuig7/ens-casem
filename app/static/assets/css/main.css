@@ -2819,7 +2819,7 @@ input, select, textarea {
 			border-bottom: 0;
 			color: inherit;
 			font-weight: 900;
-			letter-spacing: 0.15em;
+			letter-spacing: 0.03em;
 			margin: 0 0 2.5em 0;
 			text-decoration: none;
 			text-transform: uppercase;
@@ -2837,12 +2837,12 @@ input, select, textarea {
 
 				#header .logo .symbol img {
 					display: block;
-					width: 8em;
-					height: 8em;
+					width: 9em;
+					height: 9em;
 				}
 
 			#header .logo .title {
-				font-size: 130%;
+				font-size: 125%;
 			}
 
 		#header nav {
