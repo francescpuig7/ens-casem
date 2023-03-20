@@ -8,7 +8,6 @@
                 <li><a href={{ url_for('monestir', lang_code='ca') }}>Cerimonia</a></li>
                 <li><a href={{ url_for('restaurant', lang_code='ca') }}>Rebuda</a></li>
                 <li><a href={{ url_for('post_comentaris', lang_code='ca') }}>Informacio</a></li>
-                <li><a href={{ url_for('get_cancons', lang_code='ca') }}>Cancons</a></li>
                 {% if current_user.is_authenticated %}
                     <li><a href={{ url_for('invitats') }}>Invitati</a></li>
                     <li><a href={{ url_for('get_comentaris', lang_code='ca') }}>Informacions</a></li>
