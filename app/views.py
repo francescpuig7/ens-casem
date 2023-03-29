@@ -43,12 +43,16 @@ def logout():
 @app.route('/<lang_code>/cerimonia', methods=['GET'])
 def monestir(lang_code):
     lang = lang_code
+    if lang != get_language():
+        set_language(lang)
     return render_template(f'pages/{lang}/monestir.html')
 
 
 @app.route('/<lang_code>/apat', methods=['GET'])
 def restaurant(lang_code):
     lang = lang_code
+    if lang != get_language():
+        set_language(lang)
     return render_template(f'pages/{lang}/restaurant.html')
 
 
@@ -56,6 +60,8 @@ def restaurant(lang_code):
 def get_comentaris(lang_code):
     comentaris = Comentari.query.all()
     lang = lang_code
+    if lang != get_language():
+        set_language(lang)
     return render_template(f'pages/{lang}/comentaris.html', comentaris=comentaris)
 
 
@@ -84,6 +90,8 @@ def post_comentaris(lang_code):
     form = AllergiesForm(request.form)
 
     lang = lang_code
+    if lang != get_language():
+        set_language(lang)
     if request.method == 'POST':
         nom = request.form.get('nom', '', type=str)
         bus = request.form.get('bus', '', type=str)
@@ -144,6 +152,8 @@ def get_coses():
 @app.route('/<lang_code>/cancons', methods=['GET'])
 def get_cancons(lang_code):
     lang = lang_code
+    if lang != get_language():
+        set_language(lang)
     return render_template(f'pages/{lang}/cancons.html')
 
 
@@ -216,6 +226,9 @@ def login():
 def index(path):
 
     # try to match the pages defined in -> pages/<input file>
+    if path == 'it':
+        set_language('it')
+        path = 'index.html'
     lang = get_language()
     if path in ('ca', 'it') or path != 'index.html':
         path = 'index.html'

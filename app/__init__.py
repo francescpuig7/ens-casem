@@ -26,7 +26,10 @@ app.config['LANGUAGES'] = {
 @app.context_processor
 def inject_conf_var():
     app.config['LANGUAGES'].keys()
-    to_ret = dict(AVAILABLE_LANGUAGES=app.config['LANGUAGES'], CURRENT_LANGUAGE=session.get('language', request.accept_languages.best_match(app.config['LANGUAGES'].keys())))
+    if not session.get('language', None):
+        session['language'] = 'ca'
+
+    to_ret = dict(AVAILABLE_LANGUAGES=app.config['LANGUAGES'], CURRENT_LANGUAGE=session.get('language', 'ca'))
     return to_ret
 
 
