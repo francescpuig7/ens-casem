@@ -68,7 +68,11 @@
                     </div> 
                 </div>
 
-                {% include 'includes/footer.html' %}
+                {% if session['language'] == 'ca'%}
+                    {% include 'includes/footer.html' %}
+                {% else %}
+                    {% include 'includes/it/footer.html' %}
+                {% endif %}
 
 			</div>
 

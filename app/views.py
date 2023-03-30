@@ -27,6 +27,7 @@ def set_language(language=None):
     session['language'] = language
     return redirect(url_for('index'))
 
+
 # provide login manager with load_user callback
 @lm.user_loader
 def load_user(user_id):
@@ -93,15 +94,19 @@ def post_comentaris(lang_code):
     if lang != get_language():
         set_language(lang)
     if request.method == 'POST':
-        nom = request.form.get('nom', '', type=str)
-        bus = request.form.get('bus', '', type=str)
-        allergies = request.form.get('allergies', '', type=str)
-        trona = request.form.get('trona', '', type=str)
-        comentari = request.form.get('comentaris', '', type=str)
-        confirmat = request.form.get('confirmat', '', type=str)
-        com = Comentari(nom, bus, trona, comentari, confirmat, allergies)
-        com.save()
-        return render_template(f'pages/{lang}/notificacio_ok.html', form=form)
+        try:
+            nom = request.form.get('nom', '', type=str)
+            bus = request.form.get('bus', '', type=str)
+            allergies = request.form.get('allergies', '', type=str)
+            trona = request.form.get('trona', '', type=str)
+            comentari = request.form.get('comentaris', '', type=str)
+            confirmat = request.form.get('confirmat', '', type=str)
+            com = Comentari(nom, bus, trona, comentari, confirmat, allergies)
+            com.save()
+            return render_template(f'pages/{lang}/notificacio_ok.html', form=form)
+        except Exception as err:
+            print(err)
+            return render_template(f'pages/{lang}/error-info.html')
     if request.method == 'GET':
         return render_template(f'pages/{lang}/form_comentaris.html', form=form)
 

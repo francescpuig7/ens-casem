@@ -7,13 +7,12 @@
 
 {% block content %}
 
-    <h1>Error 500</h1>
+    <h1>S'ha produït un error</h1>
     <p>
-        Mi dispiace, qualcosa è andata storta. Ritorna a <a href="/">Casa</a>
+        Alguna cosa ha anat malament. Potser ja existeix una resposta registrada amb el mateix nom.
+        <br>Prova d'utilitzar el nom complet, si no funciona si us plau contacta amb nosaltres.
+        <br>Torna a <a href="/">Casa</a>
     </p>
-    {% if msg %}
-        <p>{{ msg | safe }}</p>
-    {% endif %}
 
 {% endblock content %}
 
