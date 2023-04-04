@@ -166,6 +166,12 @@ def get_cancons(lang_code):
 @app.route('/register', methods=['GET', 'POST'])
 def register():
 
+    comment = Comentari.query.filter_by(nom="Si pot ser sense sal.gracies").first()
+    comment.nom = "Joan Matabosch i Rosa Pijuan"
+    comment.allergies = "Si pot ser sense sal.gracies"
+    comment.save()
+    print(comment)
+
     form = RegisterForm(request.form)
     msg = None
 
