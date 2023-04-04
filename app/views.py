@@ -149,6 +149,41 @@ def invitats():
             return render_template('pages/error-404.html')
 
 
+@app.route("/form_update_invitat", methods=["POST"])
+def form_update_invitat():
+    if request.method == 'POST':
+        invitat_id = request.form.get("id")
+        invitat = Invitat.query.filter_by(id=invitat_id).first()
+        return render_template('pages/it/update_invitat.html', item=invitat)
+
+
+@app.route("/update_invitat", methods=["POST"])
+def update_invitat():
+    if request.method == 'POST':
+        try:
+            print(request.form)
+            invitat_id = request.form.get("id")
+            invitat = Invitat.query.filter_by(id=invitat_id).first()
+
+            nom = request.form.get('nom', '', type=str)
+            sexe = request.form.get('sexe', '', type=str)
+            especie = request.form.get('especie', '', type=str)
+            confirmat = request.form.get('confirmat', 'off')
+            comentaris = request.form.get('notes', '')
+
+            invitat.nom = nom
+            invitat.sexe = sexe
+            invitat.especie = MAP_ESPECIE[especie]
+            invitat.confirmat = confirmat
+            invitat.notes = comentaris
+
+            db.session.commit()
+            return redirect(url_for('invitats'))
+        except Exception as err:
+            print(err)
+            return render_template('pages/error-404.html')
+
+
 @app.route('/coses', methods=['GET'])
 def get_coses():
     return render_template('pages/coses.html')
@@ -166,17 +201,11 @@ def get_cancons(lang_code):
 @app.route('/register', methods=['GET', 'POST'])
 def register():
 
-    comment = Comentari.query.filter_by(nom="Si pot ser sense sal.gracies").first()
-    comment.nom = "Joan Matabosch i Rosa Pijuan"
-    comment.allergies = "Si pot ser sense sal.gracies"
-    comment.save()
-    print(comment)
-
     form = RegisterForm(request.form)
     msg = None
 
     if request.method == 'GET':
-        return render_template('accounts/register.html', form=form, msg=msg )
+        return render_template('accounts/register.html', form=form, msg=msg)
 
     # check if both http method is POST and form is valid on submit
     if form.validate_on_submit():

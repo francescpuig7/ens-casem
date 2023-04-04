@@ -1,0 +1,57 @@
+{% extends "layouts/default.html" %}
+
+{% block title %} Modifica invitat {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+							<h2>Modificar {{ item.nom }}</h2>
+							<br>
+
+							<section>
+								<form method="POST" action="/update_invitat">
+									<div class="row gtr-uniform">
+										<div>
+											<label for="label_nom">Nome</label>
+											<input value="{{item.nom}}" name="nom" id="label_nom">
+											<input type="hidden" value="{{item.id}}" name="id">
+										</div>
+										<div>
+											<label for="sexe">Genero</label>
+											<select name="sexe" id="sexe">
+												<option value="M"{% if item.sexe=='M' %} selected="selected"{% endif %}>Maschio</option>
+												<option value="F"{% if item.sexe=='F' %} selected="selected"{% endif %}>Femmina</option>
+												<option value="B"{% if item.sexe=='B' %} selected="selected"{% endif %}>Bambino</option>
+											</select>
+										</div>
+										<div>
+											<label for="especie">Spezia</label>
+											<select name="especie" id="especie">
+												<option value="1"{% if item.especie=='Pepe' %} selected="selected"{% endif %}>Pepe</option>
+												<option value="2"{% if item.especie=='Sale' %} selected="selected"{% endif %}>Sale</option>
+											</select>
+										</div>
+										<div>
+											<label for="confirmat">Conferma</label>
+											<select name="confirmat" id="confirmat">
+												<option value="SI"{% if item.confirmat=='SI' %} selected="selected"{% endif %}>SI</option>
+												<option value="NO"{% if item.confirmat=='NO' %} selected="selected"{% endif %}>NO</option>
+											</select>
+										</div>
+										<div class="col-12">
+											<label for="notes">Allergie/intoleranze</label>
+											<textarea name="notes" id="notes">{{item.notes}}</textarea>
+										</div>
+										<div class="col-12">
+											<input type="submit" value="Modifica" class="button primary">
+										</div>
+									</div>
+								</form>
+							</section>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

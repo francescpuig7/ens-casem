@@ -23,19 +23,21 @@
 											</thead>
 											<tbody>
 											{% for item in invitats %}
-											<tr>
-												<td>{{ item.nom }}</td>
-												<td>{{ item.sexe }}</td>
-												<td>{{ item.especie }}</td>
-												<td>{{ item.confirmat }}</td>
-												<td>{{ item.notes }}</td>
-											</tr>
-											<!--<p>{{item.nom}}</p>
-											<form method="POST" action="./update">
-											<input type="hidden" value="{{item.nom}}" name="beforename">
-											<input type="text" value="{{item.nom}}" name="updatedname">
-											<input type="submit" value="Update">
-											</form> -->
+											<form method="POST" action="./form_update_invitat">
+												<tr>
+													<td>{{ item.nom }}</td>
+													<td>{{ item.sexe }}</td>
+													<td>{{ item.especie }}</td>
+													<td>{{ item.confirmat }}</td>
+													<td>{{ item.notes }}</td>
+													<td>
+														<button type="submit" class="button primary small">
+															<i class="fa fa-pencil-square-o"></i>
+														</button>
+													</td>
+													<td><input type="hidden" value="{{item.id}}" name="id"></td>
+												</tr>
+											</form>
 											{% endfor %}
 											</tbody>
 											<tfoot>
