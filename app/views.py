@@ -321,3 +321,9 @@ def download_file(filepath):
 
 def get_language():
     return session.get('language', 'ca')
+
+
+# Escrits
+@app.route('/ca/anna-ngnkndcw', methods=['GET'])
+def anna_puig():
+    return render_template(f'pages/ca/escrits/anna-ngnkndcw.html')
