@@ -327,3 +327,18 @@ def get_language():
 @app.route('/ca/anna-ngnkndcw', methods=['GET'])
 def anna_puig():
     return render_template(f'pages/ca/escrits/anna-ngnkndcw.html')
+
+
+@app.route('/it/tellicherrymikvnhjm', methods=['GET'])
+def tellicherrymikvnhjm():
+    return render_template(f'pages/it/scritti/tellicherrymikvnhjm.html')
+
+
+@app.route('/it/tellicherrydvideaccvm', methods=['GET'])
+def tellicherrydvideaccvm():
+    return render_template(f'pages/it/scritti/tellicherrydvideaccvm.html')
+
+
+@app.route('/it/tellicherryolekseushu', methods=['GET'])
+def tellicherryolekseushu():
+    return render_template(f'pages/it/scritti/tellicherryolekseushu.html')
