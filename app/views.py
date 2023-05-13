@@ -342,3 +342,23 @@ def tellicherrydvideaccvm():
 @app.route('/it/tellicherryolekseushu', methods=['GET'])
 def tellicherryolekseushu():
     return render_template(f'pages/it/scritti/tellicherryolekseushu.html')
+
+
+@app.route('/it/btfrwmersq', methods=['GET'])
+def riccardo_pattuglia():
+    return render_template(f'pages/it/scritti/btfrwmersq.html')
+
+
+@app.route('/it/dkrgyuvxpk', methods=['GET'])
+def annalisa():
+    return render_template(f'pages/it/scritti/dkrgyuvxpk.html')
+
+
+@app.route('/it/jgrsjgkdat', methods=['GET'])
+def silvia_dpiano():
+    return render_template(f'pages/it/scritti/jgrsjgkdat.html')
+
+
+@app.route('/it/kurtzcfhtu', methods=['GET'])
+def lucrezia():
+    return render_template(f'pages/it/scritti/kurtzcfhtu.html')
