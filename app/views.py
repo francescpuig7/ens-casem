@@ -362,3 +362,13 @@ def silvia_dpiano():
 @app.route('/it/kurtzcfhtu', methods=['GET'])
 def lucrezia():
     return render_template(f'pages/it/scritti/kurtzcfhtu.html')
+
+
+@app.route('/it/ppzekjamqr', methods=['GET'])
+def chiara():
+    return render_template(f'pages/it/scritti/ppzekjamqr.html')
+
+
+@app.route('/it/jjupqtdgmp', methods=['GET'])
+def elisa():
+    return render_template(f'pages/it/scritti/jjupqtdgmp.html')
