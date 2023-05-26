@@ -372,3 +372,8 @@ def chiara():
 @app.route('/it/jjupqtdgmp', methods=['GET'])
 def elisa():
     return render_template(f'pages/it/scritti/jjupqtdgmp.html')
+
+
+@app.route('/ca/qrtzuygununi', methods=['GET'])
+def uni():
+    return render_template(f'pages/ca/escrits/qrtzuygununi.html')
