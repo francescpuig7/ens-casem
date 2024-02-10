@@ -2,6 +2,7 @@
 """
 License: CCA 3.0 License
 Copyright (c) 2019 - present AppSeed.us
+Author: Francesc Puig
 """
 
 # Python modules
